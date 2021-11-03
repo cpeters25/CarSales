@@ -3,7 +3,7 @@ import java.lang.Math;
 public class MonthlyPayments {
 
    private double carCost;
-   private int monthlyPaymentDesired;
+   private int monthlyPaymentsDesired;
    private double interestRate;
    
    public MonthlyPayments (double carCost, int monthlyPaymentsDesired, double interestRate) {
@@ -37,13 +37,14 @@ public class MonthlyPayments {
    }
    
    public double getNumberOfPayments() {
-      public int numberOfPaymentsInt = 12;
-      public double n = (double)numberOfPaymentsInt;
-      public double formula = (interestRate * carCost) / (1 - Math.pow((1 + rate), n));
+      int numberOfPaymentsInt = 12;
+      double n = (double)numberOfPaymentsInt;
+      double formula = (interestRate * carCost) / (1 - Math.pow((1 + interestRate), (-1*n)));
       return formula;
    }
    
    public String toString() {
-      String str = String.format("Monthly payments: %,.2f", ()getNumberOfPayments);
+      String str = String.format("Monthly payments: %,.2f", getNumberOfPayments());
       return str;
+   }
 }     
