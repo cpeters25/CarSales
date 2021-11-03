@@ -37,15 +37,35 @@ public class MonthlyPayments {
    }
    
    public double getNumberOfPayments() {
-      int numberOfPaymentsInt = 12;
-      double n = (double)numberOfPaymentsInt;
+      double n = 1;
       double r = interestRate / 100;
-      double formula = (r * carCost) / (1 - Math.pow((1 + r), (-1*n)));
-      return formula;
+      double m = 12;
+      double formula = ((r/n) * carCost) / (1 - Math.pow((1 + (r/m)), (-1*n*m)));
+      
+      while (formula > monthlyPaymentsDesired) {
+         n += 0.5;
+         formula = ((r/n) * carCost) / (1 - Math.pow((1 + (r/m)), (-1*n*m)));
+      }
+      return n * m;
    }
    
+   public double preciseRate() {
+      double payments = getNumberOfPayments();
+      double m = 12;
+      double n = payments / 12;
+      double r = interestRate / 100;
+      double formula = ((r/n) * carCost) / (1 - Math.pow((1 + (r/m)), (-1*n*m)));
+      
+      while (formula < monthlyPaymentsDesired) {
+         r += 0.000001;
+         formula = ((r/n) * carCost) / (1 - Math.pow((1 + (r/m)), (-1*n*m))); 
+      }
+      return r * 100;
+   }
+           
    public String toString() {
-      String str = String.format("Monthly Payments %,.2f", getNumberOfPayments());
+      String str = String.format("Monthly Payments %,.2f\nInterest: %.5f", getNumberOfPayments(), preciseRate());
+      
       return str;
    }
 }     
