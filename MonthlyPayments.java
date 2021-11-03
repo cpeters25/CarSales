@@ -39,12 +39,13 @@ public class MonthlyPayments {
    public double getNumberOfPayments() {
       int numberOfPaymentsInt = 12;
       double n = (double)numberOfPaymentsInt;
-      double formula = (interestRate * carCost) / (1 - Math.pow((1 + interestRate), (-1*n)));
+      double r = interestRate / 100;
+      double formula = (r * carCost) / (1 - Math.pow((1 + r), (-1*n)));
       return formula;
    }
    
    public String toString() {
-      String str = String.format("Monthly payments: %,.2f", getNumberOfPayments());
+      String str = String.format("Monthly Payments %,.2f", getNumberOfPayments());
       return str;
    }
 }     

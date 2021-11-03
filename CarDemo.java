@@ -18,7 +18,7 @@ public class CarDemo {
       System.out.print("Enter the monthly payment amount desired: ");
       monthlyPaymentDesired = keyboard.nextInt();   
 
-      System.out.println("Enter interest rate: ");
+      System.out.println("Enter interest rate: (If 3.5%, just enter 3.5)");
       interestRate = keyboard.nextDouble();   
 
       MonthlyPayments monthlyPayments = new MonthlyPayments(costOfCar, monthlyPaymentDesired, interestRate);
